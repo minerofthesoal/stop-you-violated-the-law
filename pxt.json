@@ -25,3 +25,19 @@
     ],
     "preferredEditor": "blocksprj"
 }
+{
+  "name": "alarmStopwatch",
+  "description": "A stopwatch and alarm timer extension with clock slider",
+  "dependencies": {
+    "core": "*",
+    "music": "*",
+    "text": "*",
+    "timer": "*",
+    "sprites": "*",
+    "clock": "github:microsoft/pxt-clock"
+  },
+  "files": [
+    "alarmStopwatch.ts"
+  ],
+  "public": true
+}
