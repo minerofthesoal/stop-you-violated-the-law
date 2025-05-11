@@ -1,3 +1,4 @@
+//% weight=100 color=#ff9933 icon="\uf017" block="Alarm Stopwatch"
 namespace alarmStopwatch {
     let stop_watch_time = 0
     let inputted_alarm_time = 0
@@ -8,12 +9,14 @@ namespace alarmStopwatch {
     let off_1 = true
     let amari_1 = false
 
-    // Initialize clock
     Clock.clockSpeed(1000)
     Clock.clockToggle(true)
 
-    // Toggle stopwatch on button B
-    export function toggleStopwatch() {
+    /**
+     * Toggle the stopwatch on or off
+     */
+    //% block="toggle stopwatch"
+    export function toggleStopwatch(): void {
         if (!off) {
             if (on) {
                 stopwatch_on = true
@@ -29,8 +32,14 @@ namespace alarmStopwatch {
         }
     }
 
-    // Set alarm time from input (simulate button A)
-    export function setAlarmTime(seconds: number) {
+    /**
+     * Set an alarm for a number of seconds
+     * @param seconds the countdown duration in seconds
+     */
+    //% block="set alarm time to %seconds seconds"
+    //% seconds.min=1 seconds.max=60 seconds.defl=10
+    //% seconds.shadow="slider"
+    export function setAlarmTime(seconds: number): void {
         inputted_alarm_time = seconds
         on_1 = true
         off_1 = false
@@ -40,14 +49,32 @@ namespace alarmStopwatch {
         })
     }
 
-    // Reset everything (simulate MENU button)
-    export function resetAll() {
+    /**
+     * Reset stopwatch and alarm
+     */
+    //% block="reset stopwatch and alarm"
+    export function resetAll(): void {
         stop_watch_time = 0
         inputted_alarm_time = 0
     }
 
-    // Start update loops (should be called in main.ts)
-    export function startLoops() {
+    /**
+     * Set the current clock time in minutes
+     * @param minutes the time to set on the clock (in minutes)
+     */
+    //% block="set clock time to %minutes minutes"
+    //% minutes.min=0 minutes.max=1440 minutes.defl=60
+    //% minutes.shadow="slider"
+    export function setClockTimeInMinutes(minutes: number): void {
+        
+    }
+
+    /**
+    Clock.makeClock(0, 0, 0, "am")
+     * Start the stopwatch and alarm update loops
+     */
+    //% block="start stopwatch and alarm system"
+    export function startLoops(): void {
         forever(function () {
             pause(125)
             let textSprite1 = textsprite.create(convertToText(inputted_alarm_time))
